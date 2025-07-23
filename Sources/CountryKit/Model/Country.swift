@@ -20,6 +20,11 @@ public struct Country: Codable {
         code.toFlag()
     }
     public let dialCode: String
+
+    public init(code: String, dialCode: String? = nil) {
+        self.code = code
+        self.dialCode = dialCode ?? code
+    }
 }
 
 fileprivate extension String {
