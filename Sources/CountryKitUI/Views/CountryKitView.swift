@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
+public struct SwiftUIView: View {
     @StateObject private var viewModel = CountryKitViewModel()
 
-    var body: some View {
+    public var body: some View {
 
         TextField("Searching".localized, text: $viewModel.searchText)
             .padding(10)
