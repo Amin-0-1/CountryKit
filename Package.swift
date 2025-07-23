@@ -5,16 +5,27 @@ import PackageDescription
 
 let package = Package(
     name: "CountryKit",
-    platforms: [.iOS(.v13)],
+    defaultLocalization: "en",
+    platforms: [.iOS(.v14)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "CountryKit",
             targets: ["CountryKit"]),
+
+            .library(
+                name: "CountryKitUI",
+                targets: ["CountryKitUI"]
+            )
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
+        .target(
+            name: "CountryKitUI",
+            dependencies: [.target(name: "CountryKit")]
+        ),
+
         .target(
             name: "CountryKit",
             resources: [.process("Resources")]
