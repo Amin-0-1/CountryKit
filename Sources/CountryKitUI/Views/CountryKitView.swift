@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-public struct SwiftUIView: View {
+public struct CountryKitView: View {
     @StateObject private var viewModel = CountryKitViewModel()
 
+    public init() {}
     public var body: some View {
 
         TextField("Searching".localized, text: $viewModel.searchText)
@@ -25,5 +26,5 @@ public struct SwiftUIView: View {
 }
 
 #Preview {
-    SwiftUIView()
+    CountryKitView()
 }
