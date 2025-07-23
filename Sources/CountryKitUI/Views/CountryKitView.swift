@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct SwiftUIView: View {
-    @StateObject var viewModel = CountryKitViewModel()
+    @StateObject private var viewModel = CountryKitViewModel()
 
     var body: some View {
-        List(viewModel.countries) { country in
+
+        TextField("Searching".localized, text: $viewModel.searchText)
+            .padding(10)
+            .background(Color(.systemGray6))
+            .roundedCorners()
+            .padding()
+
+        List(viewModel.filterredCountries) { country in
             CountryCell(country: country.country)
         }
     }
