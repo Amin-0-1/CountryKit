@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CountryKit
 
 struct CountryCell: View {
     let country: Country

@@ -12,19 +12,10 @@ let package = Package(
         .library(
             name: "CountryKit",
             targets: ["CountryKit"]),
-
-            .library(
-                name: "CountryKitUI",
-                targets: ["CountryKitUI"]
-            )
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "CountryKitUI",
-            dependencies: [.target(name: "CountryKit")]
-        ),
 
         .target(
             name: "CountryKit",
