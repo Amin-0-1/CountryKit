@@ -6,12 +6,11 @@
 //
 
 import Foundation
-import CountryKit
 import SwiftUI
 import Combine
 
 final class CountryKitViewModel: ObservableObject {
-    private let countries: [CountryModel] = CountryKit.all.map{ CountryModel(country: $0) }
+    private let countries: [CountryModel] = CountryKit.allCountries.map{ CountryModel(country: $0) }
     private var cancellables: Set<AnyCancellable> = []
     @Published var filterredCountries: [CountryModel] = []
     @Published var searchText: String = ""

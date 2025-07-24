@@ -9,8 +9,11 @@ import SwiftUI
 
 public struct CountryKitView: View {
     @StateObject private var viewModel = CountryKitViewModel()
+    var onSelect: (Country) -> Void
 
-    public init() {}
+    public init(onSelect: @escaping (Country) -> Void = { _ in}) {
+        self.onSelect = onSelect
+    }
     public var body: some View {
 
         TextField("Searching".localized, text: $viewModel.searchText)
@@ -19,12 +22,15 @@ public struct CountryKitView: View {
             .roundedCorners()
             .padding()
 
-        List(viewModel.filterredCountries) { country in
-            CountryCell(country: country.country)
+        List(viewModel.filterredCountries) { countryModel in
+            CountryCell(country: countryModel.country)
+                .onTapGesture {
+                    onSelect(countryModel.country)
+                }
         }
     }
 }
 
 #Preview {
-    CountryKitView()
+    CountryKitView(onSelect: { _ in print("pressed")})
 }

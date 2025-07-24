@@ -7,8 +7,8 @@
 
 import Foundation
 
-public struct CountryKit {
-    public static var all: [Country] {
+public enum CountryKit {
+    public static var allCountries: [Country] {
         guard let url = Bundle.module.url(forResource: "Countries", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let list = try? JSONDecoder().decode([Country].self, from: data) else { return [] }

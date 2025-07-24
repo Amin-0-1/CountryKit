@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CountryKit
 
 struct CountryModel: Identifiable {
     let id = UUID()
