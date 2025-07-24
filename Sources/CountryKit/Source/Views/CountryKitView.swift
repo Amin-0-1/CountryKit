@@ -22,11 +22,17 @@ public struct CountryKitView: View {
             .roundedCorners()
             .padding()
 
-        List(viewModel.filterredCountries) { countryModel in
-            CountryCell(country: countryModel.country)
-                .onTapGesture {
-                    onSelect(countryModel.country)
+        List {
+            ForEach(viewModel.groupedCountriesSortedKeys, id: \.self) { key in
+                Section(header: Text(key)) {
+                    ForEach(viewModel.groupedCountries[key] ?? []) { countryModel in
+                        CountryCell(country: countryModel.country)
+                            .onTapGesture {
+                                onSelect(countryModel.country)
+                            }
+                    }
                 }
+            }
         }
     }
 }
