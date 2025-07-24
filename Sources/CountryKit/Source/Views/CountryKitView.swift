@@ -18,7 +18,7 @@ public struct CountryKitView: View {
 
         TextField("Searching".localized, text: $viewModel.searchText)
             .padding(10)
-            .background(Color(.systemGray6))
+            .background(Color(.secondarySystemBackground))
             .roundedCorners()
             .padding()
 
@@ -26,10 +26,12 @@ public struct CountryKitView: View {
             ForEach(viewModel.groupedCountriesSortedKeys, id: \.self) { key in
                 Section(header: Text(key)) {
                     ForEach(viewModel.groupedCountries[key] ?? []) { countryModel in
-                        CountryCell(country: countryModel.country)
-                            .onTapGesture {
-                                onSelect(countryModel.country)
-                            }
+                        Button {
+                            onSelect(countryModel.country)
+                        } label: {
+                            CountryCell(country: countryModel.country)
+                        }
+                        .foreground(color: Color(.label))
                     }
                 }
             }
