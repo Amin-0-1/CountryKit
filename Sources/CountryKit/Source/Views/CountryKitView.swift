@@ -8,16 +8,16 @@
 import SwiftUI
 
 public struct CountryKitView: View {
-    @StateObject private var viewModel = CountryKitViewModel()
-    var onSelect: (Country) -> Void
+    @StateObject private var viewModel: CountryKitViewModel
 
-    public init(onSelect: @escaping (Country) -> Void = { _ in}) {
-        self.onSelect = onSelect
+    public init(preferred: [Country] = [.EG, .SA], onSelect: @escaping (Country) -> Void = { _ in}) {
+        _viewModel = StateObject(wrappedValue: .init(preferred: preferred, onSelect: onSelect))
     }
+    
     public var body: some View {
 
-        TextField("Searching".localized, text: $viewModel.searchText)
-            .padding(10)
+        TextField(Constants.searching, text: $viewModel.searchText)
+            .padding(Constants.textFieldPadding)
             .background(Color(.secondarySystemBackground))
             .roundedCorners()
             .padding()
@@ -27,7 +27,7 @@ public struct CountryKitView: View {
                 Section(header: Text(key)) {
                     ForEach(viewModel.groupedCountries[key] ?? []) { countryModel in
                         Button {
-                            onSelect(countryModel)
+                            viewModel.onCountrySelection(countryModel)
                         } label: {
                             CountryCell(country: countryModel)
                         }
@@ -39,6 +39,13 @@ public struct CountryKitView: View {
     }
 }
 
+fileprivate extension CountryKitView {
+    enum Constants {
+        static let textFieldPadding: CGFloat = 10
+        static let searching = "Searching".localized
+    }
+}
+
 #Preview {
-    CountryKitView(onSelect: { _ in print("pressed")})
+    CountryKitView()
 }
