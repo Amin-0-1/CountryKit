@@ -10,7 +10,7 @@ import SwiftUI
 public struct CountryKitView: View {
     @StateObject private var viewModel: CountryKitViewModel
 
-    public init(preferred: [Country] = [.EG, .SA], onSelect: @escaping (Country) -> Void = { _ in}) {
+    public init(preferred: [Country] = [], onSelect: @escaping (Country) -> Void = { _ in}) {
         _viewModel = StateObject(wrappedValue: .init(preferred: preferred, onSelect: onSelect))
     }
     

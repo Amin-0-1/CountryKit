@@ -17,14 +17,14 @@ public final class CountryKitViewModel: ObservableObject {
     private(set) var onCountrySelection: (Country) -> Void = { _ in }
     var groupedCountriesSortedKeys: [String] {
         let sortedKeys = groupedCountries.keys.sorted()
-        return searchText.isEmpty ? [Constants.preferred.localized] + sortedKeys : sortedKeys
+        return searchText.isEmpty ? [Constants.preferred] + sortedKeys : sortedKeys
     }
     // MARK: - Publishers
     @Published var groupedCountries: [String: [Country]] = [:]
     @Published var searchText: String = ""
 
     // MARK: - Initializer
-    public init(preferred: [Country] = [.EG, .SA], onSelect: @escaping (Country) -> Void = { _ in}) {
+    public init(preferred: [Country], onSelect: @escaping (Country) -> Void = { _ in}) {
         self.preferred = preferred
         self.onCountrySelection = onSelect
         $searchText
@@ -61,6 +61,6 @@ public final class CountryKitViewModel: ObservableObject {
 
 fileprivate extension CountryKitViewModel {
     enum Constants {
-        static let preferred: String = "Preferred"
+        static let preferred: String = "Preferred".localized
     }
 }

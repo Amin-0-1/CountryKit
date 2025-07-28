@@ -26,6 +26,8 @@ public enum Country: String, CaseIterable, Identifiable {
     case TR, TM, TC, TV, UG, UA, AE, GB, US, UM, UY, UZ, VU, VE, VN, VG
     case VI, WF, EH, YE, ZM, ZW
 
+    public static var allCountries: [Country] { allCases }
+
     public var dialCode: String {
         countryCode[self] ?? id
     }
