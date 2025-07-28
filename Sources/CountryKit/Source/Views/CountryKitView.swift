@@ -27,9 +27,9 @@ public struct CountryKitView: View {
                 Section(header: Text(key)) {
                     ForEach(viewModel.groupedCountries[key] ?? []) { countryModel in
                         Button {
-                            onSelect(countryModel.country)
+                            onSelect(countryModel)
                         } label: {
-                            CountryCell(country: countryModel.country)
+                            CountryCell(country: countryModel)
                         }
                         .foreground(color: Color(.label))
                     }

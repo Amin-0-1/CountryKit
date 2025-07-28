@@ -27,5 +27,5 @@ struct CountryCell: View {
 
 @available(iOS 17, *)
 #Preview(traits: .sizeThatFitsLayout) {
-    CountryCell(country: .init(code: "EG", dialCode: "20"))
+    CountryCell(country: .EG)
 }
